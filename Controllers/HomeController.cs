@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
