@@ -12,7 +12,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         public RoleDao(IConfiguration config) : base(config)
         {
         }
-        private const string CREATE_ROLE = "INSERT INTO Roles(RoleName) OUTPUT.Id VALUES(@roleName)";
+        private const string CREATE_ROLE = "INSERT INTO Roles(RoleName) OUTPUT INSERTED.Id VALUES(@roleName)";
         private const string DELETE_ROLE = "DELETE FROM Roles WHERE Id = @roleId";
         private const string SELECT_ROLE_BY_ID = "SELECT Id, RoleName FROM Roles WHERE Id = @roleId";
         private const string SELECT_ROLE_BY_NAME = "SELECT Id, RoleName FROM Roles WHERE RoleName = @roleName";

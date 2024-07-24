@@ -4,6 +4,7 @@
 }
 
 <form asp-action="Login">
+    @Html.AntiForgeryToken()
     <label asp-for="Username" />
     <input asp-for="Username" />
     <br />

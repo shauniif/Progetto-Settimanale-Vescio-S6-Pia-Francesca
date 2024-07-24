@@ -66,28 +66,38 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception creating user");
+                _logger.LogError(ex, "Exception deleting user");
                 throw;
             }
         }
 
         public List<UserEntity> GetAll()
-        {
-           List<UserEntity> users = new List<UserEntity>();
-            var cmd = GetCommand(SELECT_ALL_USERS);
-            var conn = GetConnection();
-            conn.Open();
-            using var reader = cmd.ExecuteReader();
-            while (reader.Read())
+        { try
             {
-                users.Add(CreateReader(reader));
+                List<UserEntity> users = new List<UserEntity>();
+                var cmd = GetCommand(SELECT_ALL_USERS);
+                var conn = GetConnection();
+                conn.Open();
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(CreateReader(reader));
+                }
+                conn.Close();
+                return users;
             }
-            conn.Close();
-            return users;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting users");
+                throw;
+            }
+
         }
 
         public UserEntity? Login(string username)
-        {
+        {   try
+            {
+
             var cmd = GetCommand(LOGIN);
             var con = GetConnection();
             con.Open();
@@ -96,24 +106,40 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             if (reader.Read()) 
                 return CreateReader(reader);
             return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error login");
+                throw;
+            }
         }
 
         public UserEntity ReadById(int userId)
-        {
-            var cmd = GetCommand(SELECT_USER_BY_ID);
-            cmd.Parameters.Add(new SqlParameter("@id", userId));
-            var conn = GetConnection();
-            conn.Open();
-            var reader = cmd.ExecuteReader();
-            UserEntity user = new UserEntity();
-            if (reader.Read())
-                user = CreateReader(reader);
-            conn.Close();
-            return user;
+        {   try
+            {
+
+                var cmd = GetCommand(SELECT_USER_BY_ID);
+                cmd.Parameters.Add(new SqlParameter("@id", userId));
+                var conn = GetConnection();
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+                UserEntity user = new UserEntity();
+                if (reader.Read())
+                    user = CreateReader(reader);
+                conn.Close();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting single user");
+                throw;
+            }
         }
 
         public UserEntity ReadByUserName(string username)
         {
+            try
+            {
 
             var cmd = GetCommand(SELECT_USER_BY_USERNAME);
             cmd.Parameters.Add(new SqlParameter("@username", username));
@@ -125,10 +151,17 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
                 user = CreateReader(reader);
             conn.Close();
             return user;
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting single user");
+                throw;
+            }
         }
 
         public UserEntity Update(int userId, UserEntity user)
-        {
+        { try
+            {
+
             var cmd = GetCommand(UPDATE_US);
             var conn = GetConnection();
             conn.Open();
@@ -140,6 +173,12 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
                 u = CreateReader(reader);
             conn.Close();
             return u;
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating single user");
+                throw;
+            }
+            }
         }
-    }
+    
 }

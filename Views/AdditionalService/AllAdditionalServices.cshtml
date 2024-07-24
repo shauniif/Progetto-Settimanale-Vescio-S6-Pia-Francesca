@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Progetto_Settimanale_Vescio_Pia_Francesca.Models.AdditionalServiceModel>
+
+@{
+    ViewData["Title"] = "AllAdditionalServices";
+}
+
+<h1>AllAdditionalServices</h1>
+
+<p>
+    <a asp-controller="AdditionalService" asp-action="RegisterAdditionalService">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                    <a class="btn btn-primary btn-sm" asp-action="UpdateAdditionalService" asp-controller="AdditionalService" asp-route-id="@item.Id">Modifica</a>
+                    <a class="btn btn-primary btn-sm" asp-action="DeleteRoom" asp-controller="AdditionalService" asp-route-id="@item.Id" class="btn btn-primary">Elimina</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -17,6 +17,10 @@ builder.Services
     .AddScoped<DbContext>()
     .AddScoped<IAccountService, AccountService>()
     .AddScoped<IPasswordEncoder, PasswordEnconders>()
+    .AddScoped<ICustomerService, CustomerService>()
+    .AddScoped<IRoomService, RoomService>()
+    .AddScoped<IAdditionalSvcService, AdditionalSvcService>()
+    .AddScoped<IBookingService, BookingService>()
     .AddControllersWithViews();
 
 
@@ -39,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=FirstPage}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

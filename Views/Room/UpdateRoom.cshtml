@@ -1,0 +1,42 @@
+﻿@model Progetto_Settimanale_Vescio_Pia_Francesca.Models.RoomModel
+
+@{
+    ViewData["Title"] = "UpdateRoom";
+}
+
+<h1>UpdateRoom</h1>
+
+<h4>RoomModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateRoom">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumberRoom" class="control-label"></label>
+                <input asp-for="NumberRoom" class="form-control" />
+                <span asp-validation-for="NumberRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescriptionRoom" class="control-label"></label>
+                <input asp-for="DescriptionRoom" class="form-control" />
+                <span asp-validation-for="DescriptionRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeofRoom" class="control-label"></label>
+                <select asp-for="TypeofRoom" class="form-control" />
+                <option value="Singola">Singola</option>
+                <option value="Doppia">Doppia</option>
+                <span asp-validation-for="TypeofRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

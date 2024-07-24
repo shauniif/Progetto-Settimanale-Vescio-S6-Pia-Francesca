@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Progetto_Settimanale_Vescio_Pia_Francesca.Models.BookingModel>
+
+@{
+    ViewData["Title"] = "AllBooking";
+}
+
+<h1>AllBooking</h1>
+
+<p>
+    <a asp-action="RegisterBooking" asp-action="Booking">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateBooking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearProg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deposit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeofStay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.NumberRoom)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateBooking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearProg)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deposit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeofStay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+                <td>
+                   @Html.DisplayFor(modelItem => item.Room.NumberRoom)
+                </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

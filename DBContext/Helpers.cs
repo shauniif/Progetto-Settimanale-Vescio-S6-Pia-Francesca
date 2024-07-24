@@ -10,7 +10,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DBContext
             return services
                 .AddScoped<IUserDao, UserDao>()
                 .AddScoped<IRoleDao, RoleDao>()
-                .AddScoped<IUserRoleDao, UserRoleDao>();
+                .AddScoped<IUserRoleDao, UserRoleDao>()
+                .AddScoped<ICustomerDao, CustomerDao>()
+                .AddScoped<IRoomDao, RoomDao>()
+                .AddScoped<IBookingDao, BookingDao>()
+                .AddScoped<IAdditionalServiceDao, AdditionalServicesDao>();
         }
     }
 }

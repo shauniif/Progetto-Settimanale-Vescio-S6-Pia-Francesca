@@ -1,0 +1,71 @@
+﻿@model Progetto_Settimanale_Vescio_Pia_Francesca.Models.BookingModel
+
+@{
+    ViewData["Title"] = "RegisterBooking";
+}
+
+<h1>RegisterBooking</h1>
+
+<h4>BookingModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegisterBooking">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateBooking" class="control-label"></label>
+                <input asp-for="DateBooking" class="form-control" />
+                <span asp-validation-for="DateBooking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearProg" class="control-label"></label>
+                <input asp-for="YearProg" class="form-control" />
+                <span asp-validation-for="YearProg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateStart" class="control-label"></label>
+                <input asp-for="DateStart" class="form-control" />
+                <span asp-validation-for="DateStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEnd" class="control-label"></label>
+                <input asp-for="DateEnd" class="form-control" />
+                <span asp-validation-for="DateEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deposit" class="control-label"></label>
+                <input asp-for="Deposit" class="form-control" />
+                <span asp-validation-for="Deposit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rate" class="control-label"></label>
+                <input asp-for="Rate" class="form-control" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeofStay" class="control-label"></label>
+                <input asp-for="TypeofStay" class="form-control" />
+                <span asp-validation-for="TypeofStay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                <select asp-for="Customer.Id" id="customer">
+                
+                </select>
+            </div>
+            <div>
+                <label asp-for="Room" class="control-label"></label>
+                <select asp-for="Room.Id" id="room">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

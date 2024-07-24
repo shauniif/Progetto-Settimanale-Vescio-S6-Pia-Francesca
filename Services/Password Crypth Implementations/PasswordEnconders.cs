@@ -8,11 +8,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services
     {
         public string Encode(string password)
         {   // istanza dell'algoritmo SHA256
-            using SHA256 sha256 = SHA256.Create();
+            SHA256 sha256 = SHA256.Create();
 
             // conversione delle password in un array di Byte attraverso la codifica UTF8 
             // E calcola l'hash della password come array di byte
-            byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
 
             // conversione dell'array in una stringa Base64 
             return Convert.ToBase64String(hashedBytes);
@@ -20,9 +20,9 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services
 
         public bool IsSame(string plainText, string codedText)
         {   //codifica la password in chiario con lo stesso meotodo
-            string hashedPlainText = Encode(plainText);
-            // Se i due hash sono uquali, significa che la passowrd in chiario e la password "hashata" sono equivalenti.
-            return hashedPlainText == codedText;
+
+            // Se i due hash sono uguali, significa che la passowrd in chiario e la password "hashata" sono equivalenti.
+            return Encode(plainText) == codedText;;
         }
     }
 }

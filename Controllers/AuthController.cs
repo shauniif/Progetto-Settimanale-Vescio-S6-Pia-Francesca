@@ -5,6 +5,7 @@ using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Data;
 using Microsoft.AspNetCore.Authentication;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
@@ -20,6 +21,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(AuthModel user)
         {
             var u = _accountSvc.Register( new UserDto
@@ -41,6 +43,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AuthModel user)
         { 
             {
@@ -60,6 +63,14 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
                
             }
             return RedirectToAction("Index", "Home");
+
+         
         }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+    
     }
 }

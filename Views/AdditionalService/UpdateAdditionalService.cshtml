@@ -1,0 +1,35 @@
+﻿@model Progetto_Settimanale_Vescio_Pia_Francesca.Models.AdditionalServiceModel
+
+@{
+    ViewData["Title"] = "UpdateAdditionalService";
+}
+
+<h1>UpdateAdditionalService</h1>
+
+<h4>AdditionalServiceModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateAdditionalService">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeOfService" class="control-label"></label>
+                <input asp-for="TypeOfService" class="form-control" />
+                <span asp-validation-for="TypeOfService" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
