@@ -24,6 +24,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
             return View();
         }
 
+        public IActionResult Research()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

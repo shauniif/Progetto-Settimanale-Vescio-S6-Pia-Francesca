@@ -8,7 +8,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces
 
         UserDto? Login (string username, string password);
 
-        List<UserDto> GetAllUsers();
+        IEnumerable<UserDto> GetAllUsers();
 
         List<string> GetAllRoles();
 

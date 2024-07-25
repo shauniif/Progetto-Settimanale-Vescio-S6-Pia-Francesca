@@ -57,7 +57,8 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult RegisterBooking(BookingModel booking) 
-        { 
+        { if (ModelState.IsValid)
+            {
                 _bookingService.Create(
                     new BookingDto
                     {
@@ -80,9 +81,68 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 
                     });
                 return RedirectToAction("AllBooking", "Booking");
-
+            }
+              else { 
+                
+                return View(booking); 
+            }
         }
 
+        public IActionResult Update(int id)
+        {
+            var booking = _bookingService.Read(id);
+            var bookingModel = new BookingModel
+            {
+
+                Id = booking.Id,
+                DateBooking = booking.DateBooking,
+                YearProg = booking.YearProg,
+                DateStart = booking.DateStart,
+                DateEnd = booking.DateEnd,
+                Deposit = booking.Deposit,
+                Rate = booking.Rate,
+                TypeofStay = booking.TypeofStay,
+                Customer = new CustomerModel
+                {
+                    Id = booking.Customer.Id,
+                },
+                Room = new RoomModel
+                {
+                    Id = booking.Room.Id,
+                }
+            };
+            return View(bookingModel); 
+        }
+
+        [HttpPost]
+        public IActionResult Update(int id, BookingModel booking)
+        {
+            var b = _bookingService.Update(id, new BookingDto
+            {
+                Id = booking.Id,
+                DateBooking = booking.DateBooking,
+                YearProg = booking.YearProg,
+                DateStart = booking.DateStart,
+                DateEnd = booking.DateEnd,
+                Deposit = booking.Deposit,
+                Rate = booking.Rate,
+                TypeofStay = booking.TypeofStay,
+                Customer = new CustomerEntity
+                {
+                    Id = booking.Customer.Id,
+                },
+                Room = new RoomEntity
+                {
+                    Id = booking.Room.Id,
+                }
+            });
+            return RedirectToAction("AllBooking", "Booking");
+        }
+        public IActionResult DeleteBooking(int id)
+        {
+            _bookingService.Delete(id);
+            return RedirectToAction("AllBooking", "Booking");
+        }
     }
 
 }

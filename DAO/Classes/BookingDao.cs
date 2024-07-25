@@ -30,9 +30,9 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             "TypeofStay, IdCustomer, IdRoom " +
             "FROM Booking " +
             "WHERE IdBooking = @id";
-        private const string UPDATE_BO = "UPDATE Bookign SET " +
+        private const string UPDATE_BO = "UPDATE Booking SET " +
             "DateBooking = @db, YearProg = @yp , DateStart = @ds, DateEnd = @de, Deposit = @deposit, Rate = @rate, " +
-            "TypeofStay = @tos, IdCustomer = @idC, IdRoom = @idR" +
+            "TypeofStay = @tos, IdCustomer = @idC, IdRoom = @idR " +
             "WHERE IdBooking = @id";
 
         private BookingEntity CreateReader(DbDataReader reader)
@@ -100,17 +100,17 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             try
             {
 
-                List<BookingEntity> additionalServices = new List<BookingEntity>();
+                List<BookingEntity> bookings = new List<BookingEntity>();
                 var cmd = GetCommand(SELECT_ALL_BO);
                 var conn = GetConnection();
                 conn.Open();
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    additionalServices.Add(CreateReader(reader));
+                    bookings.Add(CreateReader(reader));
                 }
                 conn.Close();
-                return additionalServices;
+                return bookings;
             }
             catch (Exception ex)
             {

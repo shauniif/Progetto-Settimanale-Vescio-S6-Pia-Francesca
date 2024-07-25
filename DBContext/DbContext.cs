@@ -15,9 +15,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DBContext
         public IBookingDao Booking { get; set; }
 
         public IAdditionalServiceDao AdditionalService { get; set; }
+
+        public IBookingServiceDao BookingService { get; set; }
  
 
-        public DbContext(IUserDao userDao, IRoleDao roleDao, IUserRoleDao roleUserDao, ICustomerDao customer, IRoomDao rooms , IBookingDao booking, IAdditionalServiceDao additionalService)
+        public DbContext(IUserDao userDao, IRoleDao roleDao, IUserRoleDao roleUserDao, ICustomerDao customer, IRoomDao rooms , IBookingDao booking, IAdditionalServiceDao additionalService, IBookingServiceDao bookingServiceDao)
         {
             User = userDao;
             Role = roleDao;
@@ -26,6 +28,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DBContext
             Rooms = rooms;
             Booking = booking;
             AdditionalService = additionalService;
+            BookingService = bookingServiceDao;
         }
 
     }

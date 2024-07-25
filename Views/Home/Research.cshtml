@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Research";
+}
+
+<h1>Research</h1>
+
+Cerca una prenotazione tramite Codice Fiscale
+
+    <input placeholder="M2938190s91234hc" id="fiscalCode" />
+<button type="button" id="research1">Ricerca</button>
+    <div>
+        <h3>Elenco delle Prenotazioni</h3>
+        <div id="booking-list"></div>
+    </div>
+
+
+    <input placeholder="Pensione completa" id="typeofStay"/>
+<button type="button" id="research2">Ricerca</button>
+<div>
+    <h3>Il numero delle prenotazioni di tipo <span id="typeresearched"></span> : <span id="numberofType"></span> </h3>
+    <div id="booking-list"></div>
+</div>

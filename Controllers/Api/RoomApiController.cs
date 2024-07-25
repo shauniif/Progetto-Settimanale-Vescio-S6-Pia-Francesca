@@ -7,16 +7,16 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class RoomApiController : ControllerBase
     {
         private readonly IRoomService _roomService;
-        public RoomController(IRoomService roomService)
+        public RoomApiController(IRoomService roomService)
         {
             _roomService = roomService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CustomerModel>> AllCustomer()
+        public ActionResult<IEnumerable<RoomModel>> AllRooms()
         {
             return Ok(_roomService.GetAll());
         }

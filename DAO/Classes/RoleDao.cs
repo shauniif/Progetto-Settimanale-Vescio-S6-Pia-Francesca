@@ -16,7 +16,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         private const string DELETE_ROLE = "DELETE FROM Roles WHERE Id = @roleId";
         private const string SELECT_ROLE_BY_ID = "SELECT Id, RoleName FROM Roles WHERE Id = @roleId";
         private const string SELECT_ROLE_BY_NAME = "SELECT Id, RoleName FROM Roles WHERE RoleName = @roleName";
-        private const string SELECT_ALL_ROLES = "SELECT Id, RoleName FROM Roles";
+        private const string SELECT_ALL_ROLES = "SELECT RoleName FROM Roles";
         private const string UPDATE_ROLE = "UPDATE Roles SET RoleName = @roleName WHERE Id = @roleId";
 
         private RoleEntity CreateReader(DbDataReader reader)

@@ -43,7 +43,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
             }
         }
 
-        public List<UserDto> GetAllUsers()
+        public IEnumerable<UserDto> GetAllUsers()
         {
             try {
                 var users = _db.User.GetAll();

@@ -19,31 +19,59 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                            @if (User.Identity?.IsAuthenticated ?? false)
+                            {
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Gestione Interna dell'Hotel
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="AllRooms">Sezione Clienti</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="AdditionalService" asp-action="AllAdditionalServices">Sezione Clienti</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Gestione Pretonazioni, Servizi e Clienti
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="AllCustomer">Sezione Clienti</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="AllBooking">Sezione Clienti</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="BookingServices" asp-action="AllBookingServices">Sezione Clienti</a>
+                                    </li>
+
+                                   
+                                </ul>
+                            </div>
+
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
+                            </li>
+                            }
+                        @if (!(User.Identity?.IsAuthenticated ?? false))
+                        {
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="FirstPage">Sezione Amministatore</a>
                         </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="AllCustomer">Sezione Clienti</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="AllRooms">Sezione Clienti</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AdditionalService" asp-action="AllAdditionalServices">Sezione Clienti</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="AllBooking">Sezione Clienti</a>
-                        </li>
+                        }
                     </ul>
+                     @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <span class=""> Ciao @User.Identity.Name!</span>
+                    }
+                   
                 </div>
             </div>
         </nav>

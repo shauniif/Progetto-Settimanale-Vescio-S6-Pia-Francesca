@@ -6,11 +6,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerApiController : ControllerBase
     {
         private readonly ICustomerService _customerService;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerApiController(ICustomerService customerService)
         {
             _customerService = customerService;
         }

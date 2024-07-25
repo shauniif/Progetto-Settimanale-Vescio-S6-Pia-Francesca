@@ -17,6 +17,23 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         _accountSvc = accountService;
         }
 
+
+        public IActionResult AllUser()
+        {
+            var users = _accountSvc.GetAllUsers();
+            var usersModel = users.Select(u => new AuthModel
+            {
+                Username = u.Username
+            }).ToList();
+            return View(usersModel); 
+        }
+    
+        public IActionResult AllRoles()
+        {
+           var roles = _accountSvc.GetAllRoles();
+            return View(roles);
+        }
+
         public IActionResult Register() {
             return View();
         }

@@ -1,0 +1,21 @@
+﻿@model TotalCheckOut
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>@Model.NameCustomer</h1>
+
+<h1>@Model.RoomofCustomer.NumberRoom</h1>
+<h1>@Model.RoomofCustomer.DateStart</h1>
+<h1>@Model.RoomofCustomer.DateEnd</h1>
+<h1>@Model.RoomofCustomer.Rate</h1>
+
+
+@foreach(var item in Model.TolalAdditionalService)
+{
+    <p>@item.Key  @item.Value</p>
+}
+
+@Model.TotalToPay

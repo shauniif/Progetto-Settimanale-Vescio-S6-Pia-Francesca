@@ -14,7 +14,8 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DBContext
                 .AddScoped<ICustomerDao, CustomerDao>()
                 .AddScoped<IRoomDao, RoomDao>()
                 .AddScoped<IBookingDao, BookingDao>()
-                .AddScoped<IAdditionalServiceDao, AdditionalServicesDao>();
+                .AddScoped<IAdditionalServiceDao, AdditionalServicesDao>()
+                .AddScoped<IBookingServiceDao, BookingServiceDao>();
         }
     }
 }

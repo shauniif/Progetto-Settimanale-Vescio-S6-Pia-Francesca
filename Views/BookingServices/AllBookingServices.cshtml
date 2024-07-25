@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Progetto_Settimanale_Vescio_Pia_Francesca.Models.BookingServicesModel>
+
+@{
+    ViewData["Title"] = "AllBookingServices";
+}
+
+<h1>AllBookingServices</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="BookingServices">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRequestOfService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditionalService.TypeOfService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Room.NumberRoom)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequestOfService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalService.TypeOfService)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Room.NumberRoom)
+            </td>
+            <td>
+                    <a asp-controller="BookingServices" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary">Modifica</a>
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    <a asp-controller="BookingServices" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Elimina</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
