@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(opt => opt.LoginPath = "/Auth/FirstPage");
+    .AddCookie(opt => opt.LoginPath = "/Auth/Login");
 
 builder.Services
     .RegisterDAO()

@@ -3,9 +3,11 @@ using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Data;
 using Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize]
     public class BookingServicesController : Controller
     {
         private readonly IBookingSvcService _bookingSvcService;

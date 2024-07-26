@@ -3,6 +3,7 @@ using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Data;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
 {
@@ -77,25 +78,28 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
             };
         }
 
-        public BookingDto Get(string fiscalCode)
+        public IEnumerable<BookingDto> Get(string fiscalCode)
         {
             var cmd = GetCommand(RESEARCH_BY_FISCALCODE);
             var conn = GetConnection();
             conn.Open();
             cmd.Parameters.Add(new SqlParameter("@fc", fiscalCode));
             var reader = cmd.ExecuteReader();
-            BookingDto booking = new BookingDto();
-            if (reader.Read())
+            List<BookingDto> bookings = new List<BookingDto>();
+            while(reader.Read())
             {
-                booking.Id = reader.GetInt32(0);
-                booking.DateBooking = reader.GetDateTime(1);
-                booking.YearProg = reader.GetInt32(2);
-                booking.DateStart = reader.GetDateTime(3);
-                booking.DateEnd = reader.GetDateTime(4);
-                booking.Deposit = reader.GetDecimal(5);
-                booking.Rate = reader.GetDecimal(6);
+                bookings.Add(new BookingDto
+                {
+                    Id = reader.GetInt32(0),
+                    DateBooking = reader.GetDateTime(1),
+                    YearProg = reader.GetInt32(2),
+                    DateStart = reader.GetDateTime(3),
+                    DateEnd = reader.GetDateTime(4),
+                    Deposit = reader.GetDecimal(5),
+                    Rate = reader.GetDecimal(6),
+                });
             }
-            return booking;
+            return bookings;
         }
 
         public IEnumerable<BookingDto> GetAll()

@@ -8,9 +8,9 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces
         
         InformationOfTheCheckOut RoomofCustomer(int id);
 
-        Dictionary<string, int> TolalAdditionalService(int id);
+        IEnumerable<AdditionalServiceCheckOutModel> TolalAdditionalService(int id);
 
-        decimal TotalToPay(int id);
+        TotalToPayModel TotalToPay(int id);
 
     }
 }

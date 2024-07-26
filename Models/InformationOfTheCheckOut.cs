@@ -8,5 +8,6 @@
        public  DateTime DateEnd { get; set; }
 
        public  decimal Rate { get; set; }
+       public  decimal Deposit { get; set; }
     }
 }

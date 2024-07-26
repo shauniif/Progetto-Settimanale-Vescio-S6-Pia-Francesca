@@ -2,9 +2,11 @@
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Data;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.DBContext;
-using Microsoft.Extensions.Logging;
+
 using Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Data;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Password_Crypth_Implementations;
+using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
+using System.Data;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
 {
@@ -32,16 +34,63 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
             }
         }
 
-        public List<string> GetAllRoles()
+        public RoleModel CreateRole(RoleModel role)
+        {
+            var r = _db.Role.Create(new RoleEntity 
+            { 
+                Id = role.Id, 
+                Name = role.Name 
+            });
+            return new RoleModel { Id = r.Id, Name = r.Name };
+        }
+
+        public RoleModel DeleteRole(int id) 
+        {
+            var r = _db.Role.Delete(id);
+            return new RoleModel
+            {
+                Id = r.Id,
+                Name = r.Name
+            };
+        }
+        public UserDto RemoveUser(int id)
+        {
+            var u = _db.User.Delete(id);
+            return new UserDto { Id = u.Id, Username = u.Username };
+        }   
+        public RoleModel Read(int id)
+        {
+            var r = _db.Role.ReadById(id);
+            return new RoleModel { Id = r.Id, Name = r.Name };
+        }
+        public RoleModel UpdateModel(int id, RoleModel role)
+        {
+            var r = _db.Role.Update(id, new RoleEntity
+            {
+                Id = role.Id,
+                Name = role.Name
+            });
+            return new RoleModel { Id = r.Id, Name = r.Name };
+        }
+
+        public IEnumerable<RoleModel> GetAllRoles()
         {
            try {
-                return _db.Role.ReadAll();
+                var Roles = _db.Role.ReadAll();
+                return Roles.Select(x => new RoleModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    
+                });
             } 
             catch 
             { 
                 return[];
             }
         }
+
+        
 
         public IEnumerable<UserDto> GetAllUsers()
         {
@@ -52,6 +101,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
                     Id = u.Id,
                     Username = u.Username,
                     Password = u.Password,
+                    Roles = _db.RoleUser.ReadAllByUsername(u.Username)
                 }).ToList();
             } catch 
             {
@@ -96,6 +146,12 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
             { 
                 return false; 
             }
+        }
+
+        public UserDto GetUserById(int id)
+        {
+             var u = _db.User.ReadById(id);
+                return new UserDto { Id = id, Username = u.Username, Roles = _db.RoleUser.ReadAllByUsername(u.Username) };
         }
     }
 }

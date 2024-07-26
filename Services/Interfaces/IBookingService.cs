@@ -15,7 +15,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces
 
         IEnumerable<BookingDto> GetAll();
 
-        BookingDto Get(string fiscalCode);
+        IEnumerable<BookingDto> Get(string fiscalCode);
 
         int GetCount(string typeOfStay);
     }

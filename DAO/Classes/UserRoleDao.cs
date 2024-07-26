@@ -11,7 +11,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         {
         }
         private const string INSERT_USERROLE = "INSERT INTO UserRoles(IdUser, IdRole) VALUES(@userId, @roleId)";
-        private const string DELETE_USERROLE = "DELETE FROM UserRoles WHERE UserId = @userId AND RoleId = @roleId";
+        private const string DELETE_USERROLE = "DELETE FROM UserRoles WHERE IdUser = @userId AND IdRole = @roleId";
         private const string SELECT_BY_USERNAME = "SELECT r.RoleName " +
             "FROM UserRoles AS ur " +
             "JOIN Roles AS r ON ur.IdRole = r.Id " +
@@ -63,6 +63,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             { 
                 roles.Add(reader.GetString(0)); 
             }
+            conn.Close();
             return roles;
         }
     }

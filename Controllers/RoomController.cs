@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize(Policy = Policies.IsAdmin)]
     public class RoomController : Controller
     {
         private readonly IRoomService _roomSvc;
@@ -56,15 +58,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
             }
         }
 
-        public IActionResult DetailRoom(int id)
-        {
-            var room = _roomSvc.GetRoom(id);
-            if (room == null)
-            {
-                return NotFound();
-            }
-            return Json(room);
-        }
+        
         public IActionResult DeleteRoom(int id)
         {
             _roomSvc.DeleteRoom(id);

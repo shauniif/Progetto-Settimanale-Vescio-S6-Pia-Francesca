@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,7 +14,6 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         {
             _logger = logger;
         }
-        [Authorize]
         public IActionResult Index()
         {
             return View();

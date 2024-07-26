@@ -4,18 +4,50 @@
 *@
 @{
 }
+<div class="container my-4">
+    <h1 class="mb-4">Checkout del Cliente</h1>
 
-<h1>@Model.NameCustomer</h1>
+    <section class="mb-4">
+        <h4 class="font-weight-bold">Nome Cliente:</h4>
+        <p>@Model.NameCustomer</p>
+    </section>
 
-<h1>@Model.RoomofCustomer.NumberRoom</h1>
-<h1>@Model.RoomofCustomer.DateStart</h1>
-<h1>@Model.RoomofCustomer.DateEnd</h1>
-<h1>@Model.RoomofCustomer.Rate</h1>
+    <section class="mb-4">
+        <h2>Dettagli della Stanza Prenotata</h2>
+        <ul class="list-unstyled">
+            <li><strong>Stanza Prenotata:</strong> @Model.RoomofCustomer.NumberRoom</li>
+            <li><strong>Inizio del Soggiorno:</strong> @Model.RoomofCustomer.DateStart.ToShortDateString()</li>
+            <li><strong>Fine del Soggiorno:</strong> @Model.RoomofCustomer.DateEnd.ToShortDateString()</li>
+            <li><strong>Tariffa Applicata:</strong> @Model.RoomofCustomer.Rate.ToString("C")</li>
+        </ul>
+    </section>
 
+    <section class="mb-4">
+        <h2>Tutti i Servizi Aggiuntivi</h2>
+        <ul class="list-unstyled">
+            @foreach (var item in Model.TolalAdditionalService)
+            {
+                <li>
+                    <strong>Tipo di Servizio:</strong> @item.TypeOfService -
+                    <strong>Quantità:</strong> @item.Quantity -
+                    <strong>Prezzo:</strong> @item.Price.ToString("C") -
+                    <strong>Totale da Pagare:</strong> @item.TotalCost.ToString("C")
+                </li>
+            }
+        </ul>
+    </section>
 
-@foreach(var item in Model.TolalAdditionalService)
-{
-    <p>@item.Key  @item.Value</p>
-}
+    <section>
+        <h2>Totale da Pagare</h2>
+        <ul class="list-unstyled">
+            <li><strong>Tariffa Applicata:</strong> @Model.RoomofCustomer.Rate.ToString("C")</li>
+            <li><strong>Costo Totale Servizi Aggiuntivi:</strong> @Model.TotalToPay.TotalAdditionalService.ToString("C")</li>
+            <li><strong>Caparra:</strong> @Model.RoomofCustomer.Deposit.ToString("C")</li>
+            <li><strong>Totale da Saldare:</strong> @Model.TotalToPay.TotalToPay.ToString("C")</li>
+        </ul>
+    </section>
 
-@Model.TotalToPay
+    <div class="mt-4">
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    </div>
+</div>

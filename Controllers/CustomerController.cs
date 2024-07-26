@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerSvc;
@@ -55,15 +57,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult DetailCustomer(int id) {
-            var customer = _customerSvc.GetCustomer(id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            return Json(customer);
-        }
+       
         public IActionResult DeleteCustomer(int id) { 
             _customerSvc.DeleteCustomer(id);
             return RedirectToAction("AllCustomer", "Customer");

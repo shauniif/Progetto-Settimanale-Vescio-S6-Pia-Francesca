@@ -19,53 +19,67 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                            @if (User.Identity?.IsAuthenticated ?? false)
-                            {
+                        @if (User.IsInRole("Admin"))
+                        {
                             <div class="dropdown">
                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Gestione Interna dell'Hotel
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Room" asp-action="AllRooms">Sezione Clienti</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Room" asp-action="AllRooms">Sezione Stanze</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="AdditionalService" asp-action="AllAdditionalServices">Sezione Clienti</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="AdditionalService" asp-action="AllAdditionalServices">Sezione Servizi Aggiuntivi</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="AllUser">Gestione Utenti</a>
+                                    </li>
+                                    <li>
+                                        
+                                        <a class="dropdown-item" asp-area="" asp-controller="Auth" asp-action="AllRoles">Gestione Ruoli</a>
                                     </li>
                                 </ul>
                             </div>
+                        }
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
 
                             <div class="dropdown">
                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Gestione Pretonazioni, Servizi e Clienti
+                                    Gestione Prenotazioni, Servizi e Clienti
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="AllCustomer">Sezione Clienti</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Customer" asp-action="AllCustomer">Sezione Clienti</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="AllBooking">Sezione Clienti</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Booking" asp-action="AllBooking">Sezione Prenotazioni</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="BookingServices" asp-action="AllBookingServices">Sezione Clienti</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="" asp-controller="BookingServices" asp-action="AllBookingServices">Sezione Servizi Prenotazioni</a>
                                     </li>
-
-                                   
                                 </ul>
                             </div>
-
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
                             </li>
                             }
+
+
+                           
+                            
                         @if (!(User.Identity?.IsAuthenticated ?? false))
+
                         {
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="FirstPage">Sezione Amministatore</a>
-                        </li>
+                           
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="FirstPage">Sezione Amministatore</a>
+                            </li>
                         }
+                       
                     </ul>
                      @if (User.Identity?.IsAuthenticated ?? false)
                     {

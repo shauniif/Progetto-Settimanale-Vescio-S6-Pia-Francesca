@@ -16,8 +16,8 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         }
 
         private const string CREATE_US = "INSERT INTO Users(Username, Password) OUTPUT INSERTED.Id VALUES(@username, @password)";
-        private const string DELETE_US = "DELETE FROM Users WHERE Id = @userId";
-        private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password FROM Users WHERE Id = @userId";
+        private const string DELETE_US = "DELETE FROM Users WHERE Id = @id";
+        private const string SELECT_USER_BY_ID = "SELECT Id, Username, Password FROM Users WHERE Id = @id";
         private const string SELECT_USER_BY_USERNAME = "SELECT Id, Username, Password FROM Users WHERE Username = @username";
         private const string SELECT_ALL_USERS = "SELECT Id, Username, Password FROM Users";
         private const string LOGIN = "SELECT Id, Username, Password FROM Users WHERE Username = @username";

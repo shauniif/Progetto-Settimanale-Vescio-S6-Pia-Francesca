@@ -6,9 +6,9 @@
 
        public InformationOfTheCheckOut RoomofCustomer { get; set; }
 
-       public Dictionary<string, int> TolalAdditionalService {  get; set; }
+       public IEnumerable<AdditionalServiceCheckOutModel> TolalAdditionalService {  get; set; }
         
-       public decimal TotalToPay { get; set; }
+       public TotalToPayModel TotalToPay { get; set; }
 
     }
 }

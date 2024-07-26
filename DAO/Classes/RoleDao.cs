@@ -13,11 +13,11 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         {
         }
         private const string CREATE_ROLE = "INSERT INTO Roles(RoleName) OUTPUT INSERTED.Id VALUES(@roleName)";
-        private const string DELETE_ROLE = "DELETE FROM Roles WHERE Id = @roleId";
-        private const string SELECT_ROLE_BY_ID = "SELECT Id, RoleName FROM Roles WHERE Id = @roleId";
+        private const string DELETE_ROLE = "DELETE FROM Roles WHERE Id = @id";
+        private const string SELECT_ROLE_BY_ID = "SELECT Id, RoleName FROM Roles WHERE Id = @id";
         private const string SELECT_ROLE_BY_NAME = "SELECT Id, RoleName FROM Roles WHERE RoleName = @roleName";
-        private const string SELECT_ALL_ROLES = "SELECT RoleName FROM Roles";
-        private const string UPDATE_ROLE = "UPDATE Roles SET RoleName = @roleName WHERE Id = @roleId";
+        private const string SELECT_ALL_ROLES = "SELECT Id, RoleName FROM Roles";
+        private const string UPDATE_ROLE = "UPDATE Roles SET RoleName = @roleName WHERE Id = @id";
 
         private RoleEntity CreateReader(DbDataReader reader)
         {
@@ -65,16 +65,16 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             }
         }
 
-        public List<string> ReadAll()
+        public IEnumerable<RoleEntity> ReadAll()
         {
-            List<string> roles = new List<string>();
+            List<RoleEntity> roles = new List<RoleEntity>();
             var cmd = GetCommand(SELECT_ALL_ROLES);
             var conn = GetConnection();
             conn.Open();
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                roles.Add(reader.GetString(0));
+                roles.Add(CreateReader(reader));
             }
             conn.Close();
             return roles;
@@ -83,7 +83,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
         public RoleEntity ReadById(int idRole)
         {
             var cmd = GetCommand(SELECT_ROLE_BY_ID);
-            cmd.Parameters.Add(new SqlParameter("@roleId", idRole));
+            cmd.Parameters.Add(new SqlParameter("@id", idRole));
             var conn = GetConnection();
             conn.Open();
             var reader = cmd.ExecuteReader();
@@ -114,7 +114,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Classes
             var conn = GetConnection();
             conn.Open();
             cmd.Parameters.Add(new SqlParameter("@roleName", role.Name));
-            cmd.Parameters.Add(new SqlParameter("@roleId", idRole));
+            cmd.Parameters.Add(new SqlParameter("@id", idRole));
             var reader = cmd.ExecuteReader();
             var r = new RoleEntity();
             if (reader.Read())

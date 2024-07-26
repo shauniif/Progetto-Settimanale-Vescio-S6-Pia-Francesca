@@ -3,8 +3,10 @@ using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Data;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Data;
+using Microsoft.AspNetCore.Authorization;
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         private readonly IBookingService _bookingService;
@@ -57,8 +59,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult RegisterBooking(BookingModel booking) 
-        { if (ModelState.IsValid)
-            {
+        { 
                 _bookingService.Create(
                     new BookingDto
                     {
@@ -81,11 +82,6 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 
                     });
                 return RedirectToAction("AllBooking", "Booking");
-            }
-              else { 
-                
-                return View(booking); 
-            }
         }
 
         public IActionResult Update(int id)

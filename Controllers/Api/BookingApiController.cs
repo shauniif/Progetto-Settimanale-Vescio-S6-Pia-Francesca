@@ -17,16 +17,16 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers.Api
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AdditionalServiceModel>> AllAdditionalService()
+        public ActionResult<IEnumerable<BookingModel>> AllAdditionalService()
         {
             return Ok(_bookingService.GetAll());
 
         }
         [HttpGet("{fiscalCode}")]
-        public ActionResult<BookingModel> ResearcByFiscalCode([FromRoute] string fiscalCode) 
+        public ActionResult<IEnumerable<BookingModel>> ResearcByFiscalCode([FromRoute] string fiscalCode) 
         {
-            var b = _bookingService.Get(fiscalCode);
-            var bModel = new BookingModel
+            var booking= _bookingService.Get(fiscalCode);
+            var bModel = booking.Select(b => new BookingModel
             {
                 Id = b.Id,
                 DateBooking = b.DateBooking,
@@ -35,7 +35,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers.Api
                 DateEnd = b.DateEnd,
                 Deposit = b.Deposit,
                 Rate = b.Rate,
-            };
+            });
 
             return Ok(bModel);
         }

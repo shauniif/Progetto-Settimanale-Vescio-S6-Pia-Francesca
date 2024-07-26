@@ -9,7 +9,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.DAO.Interfaces
         RoleEntity ReadById(int idRole);
         RoleEntity ReadByName(string roleName);
 
-        List<string> ReadAll();
+        IEnumerable<RoleEntity> ReadAll();
         RoleEntity Update(int idRole, RoleEntity role);
 
         RoleEntity Delete(int roleId);

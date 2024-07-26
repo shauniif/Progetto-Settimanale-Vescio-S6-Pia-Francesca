@@ -1,0 +1,60 @@
+﻿@model Progetto_Settimanale_Vescio_Pia_Francesca.Models.AuthModel
+
+@{
+    ViewData["Title"] = "DetailUser";
+    var rolesToisert = ViewBag.Roles;
+}
+
+<h1>DetailUser</h1>
+
+<div>
+    <h4>AuthModel</h4>
+    <hr />
+    <dl class="row">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Roles.Any())
+            {
+                <ul>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <li>@role</li>
+                        <a class="btn btn-danger btn-sm" asp-controller="Auth" asp-action="RemoveRoleFromUser" asp-route-username="@Model.Username" asp-route-role="@role"> Rimuovi Questo Ruolo</a>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No roles assigned.</p>
+            }
+
+                <ul>
+                    @foreach (var role in rolesToisert)
+                    {
+                        <li>
+                            @role
+                            <a class="btn btn-success btn-sm"
+                               asp-controller="Auth"
+                               asp-action="AddRoleToUser"
+                               asp-route-username="@Model.Username"
+                               asp-route-role="@role">
+                                Aggiungi Questo Ruolo
+                            </a>
+                        </li>
+                    }
+                </ul>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

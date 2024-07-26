@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Services.Interfaces;
 using Progetto_Settimanale_Vescio_Pia_Francesca.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
 {
+    [Authorize(Policy = Policies.IsAdmin)]
     public class AdditionalServiceController : Controller
     {
         private readonly IAdditionalSvcService _additionalSvcService;
