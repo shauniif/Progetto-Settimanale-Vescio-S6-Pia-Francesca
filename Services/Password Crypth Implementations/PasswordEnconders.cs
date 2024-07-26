@@ -22,7 +22,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services
         {   //codifica la password in chiario con lo stesso meotodo
 
             // Se i due hash sono uguali, significa che la passowrd in chiario e la password "hashata" sono equivalenti.
-            return Encode(plainText) == codedText;;
+            return Encode(plainText) == codedText;
         }
     }
 }
