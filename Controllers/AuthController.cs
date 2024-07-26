@@ -166,7 +166,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Controllers
                 }
                
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Research", "Home");
 
          
         }

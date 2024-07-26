@@ -2,22 +2,38 @@
 @{
     ViewData["Title"] = "Research";
 }
+<h1 class="text-center">Research</h1>
 
-<h1>Research</h1>
 
-Cerca una prenotazione tramite Codice Fiscale
-
-    <input placeholder="M2938190s91234hc" id="fiscalCode" />
-<button type="button" id="research1">Ricerca</button>
-    <div>
-        <h3>Elenco delle Prenotazioni</h3>
-        <div id="booking-list"></div>
+<div class="card mb-4">
+    <div class="card-header">
+        <h3 class="card-title">Cerca una prenotazione tramite Codice Fiscale</h3>
     </div>
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control me-2" placeholder="M2938190s91234hc" id="fiscalCode" />
+            <button type="button" class="btn btn-primary" id="research1">Ricerca</button>
+        </div>
+        <div class="mt-3">
+            <h4>Elenco delle Prenotazioni</h4>
+
+            <div class="row" id="booking-list"></div>
+        </div>
+    </div>
+</div>
 
 
-    <input placeholder="Pensione completa" id="typeofStay"/>
-<button type="button" id="research2">Ricerca</button>
-<div>
-    <h3>Il numero delle prenotazioni di tipo <span id="typeresearched"></span> : <span id="numberofType"></span> </h3>
-    <div id="booking-list"></div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Cerca per Tipo di Soggiorno</h3>
+    </div>
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control me-2" placeholder="Pensione completa" id="typeofStay" />
+            <button type="button" class="btn btn-primary" id="research2">Ricerca</button>
+        </div>
+        <div class="mt-3">
+            <h4>Il numero delle prenotazioni di tipo <span id="typeresearched"></span>: <span id="numberofType"></span></h4>
+        </div>
+    </div>
 </div>

@@ -18,7 +18,7 @@ namespace Progetto_Settimanale_Vescio_Pia_Francesca.Services.Classes
 
         private const string SEARCH_CLIENT = "SELECT CONCAT(c.LastName, ' ', c.FirstName) as Cliente " +
             "FROM Customers AS c " +
-            "JOIN Booking AS b ON c.IdCustomer = b.IdBooking " +
+            "JOIN Booking AS b ON c.IdCustomer = b.IdCustomer " +
             "WHERE b.IdBooking = @id";
         // Il numero di stanza, il periodo, la tariffa applicata
         private const string ROOM_PERIOD_RATE = "SELECT r.NumberRoom, b.DateStart, b.DateEnd, b.Rate, b.Deposit " +

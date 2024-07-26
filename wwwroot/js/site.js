@@ -74,11 +74,16 @@ $(() => {
                 bookingList.empty()
                 $(data).each((_, booking) => {
                     bookingList.append(`
-                    <p><strong> Data della prenotazione :</strong> ${booking.dateBooking}</p>
-                    <p><strong> Data di inizio soggiorno:</strong> ${booking.dateStart}</p>
-                    <p><strong> Data di fine soggiorno: </strong> ${booking.dateEnd}</p>
-                    <p><strong> Caparra: </strong> ${booking.deposit}</p>
-                    <p><strong> Tariffa applicata:</strong>  ${booking.rate}</p>
+                    <div class="card col">
+                        <div class="card-body">
+                    <p class="card-text" ><strong> Numero prenotazione:</strong> ${booking.id}</p>
+                    <p class="card-text" ><strong> Data della prenotazione :</strong> ${booking.dateBooking}</p>
+                    <p class="card-text" ><strong> Data di inizio soggiorno:</strong> ${booking.dateStart}</p>
+                    <p class="card-text" ><strong> Data di fine soggiorno: </strong> ${booking.dateEnd}</p>
+                    <p class="card-text" ><strong> Caparra: </strong> ${booking.deposit}€</p>
+                    <p class="card-text" ><strong> Tariffa applicata:</strong>  ${booking.rate}€</p>
+                        </div>
+                    <div>
                     `)
                 })
             }
